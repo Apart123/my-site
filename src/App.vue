@@ -1,4 +1,97 @@
 <template>
+  <div class="app-container">
+    <Layout>
+      <template #left>
+        <div class="aside">
+          <SiteAside />
+        </div>
+      </template>
+      <template>
+        <RouterView />
+      </template>
+    </Layout>
+  </div>
+</template>
+
+<script>
+import Layout from "./components/Layout.vue";
+import SiteAside from "./components/SiteAside.vue";
+export default {
+  components: {
+    Layout,
+    SiteAside,
+  },
+};
+</script>
+
+<style lang="less" scoped>
+@import "~@/styles/mixin.less";
+@import "~@/styles/var.less";
+.app-container {
+  .self-fill(fixed);
+  .aside {
+    width: 230px;
+    height: 100%;
+    background: @bg;
+  }
+}
+</style>
+
+<!-- 测试 Layout 组件 -->
+<!-- <template>
+  <div class="app">
+    <Layout>
+      <template #left>
+        <div class="left">
+          zuobianneirong 
+        </div>
+      </template>
+      <div class="main">中间内容</div>
+      <template #right>
+        <div class="right">右边内容</div>
+      </template>
+    </Layout>
+  </div>
+</template>
+
+<script>
+import Layout from "./components/Layout.vue";
+// import SiteAside from "./components/SiteAside.vue";
+export default {
+  components: {
+    Layout,
+    // SiteAside,
+  },
+};
+</script>
+
+<style scoped lang="less">
+@import "~@/styles/var.less";
+.app {
+  width: 60%;
+  height: 500px;
+  margin: 20px auto;
+  border: 2px solid;
+  .left {
+    width: 250px;
+    height: 100%;
+    background: lightsteelblue;
+  }
+  .main {
+    width: 100%;
+    height: 100%;
+    background: lightgreen;
+  }
+  .right {
+    width: 150px;
+    height: 100%;
+    background: lightcoral;
+  }
+}
+</style> -->
+
+<!-- siteAside 组件 -->
+<!-- <template>
   <div class="app">
     <SiteAside />
   </div>
@@ -21,7 +114,7 @@ export default {
   background: @bg;
   
 }
-</style>
+</style> -->
 
 <!-- Menu 组件 -->
 <!-- <template>

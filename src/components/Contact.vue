@@ -1,6 +1,6 @@
 <template>
   <div class="contact-container">
-    <a href="">
+    <a href="https://github.com/Apart123" target="_blank">
       <Icon type="github" />
       <div class="text">Apart123</div>
     </a>
