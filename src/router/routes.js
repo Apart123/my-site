@@ -5,9 +5,9 @@ import About from "@/views/About.vue";
 import Message from "@/views/Message.vue";
 
 export default [
-  { name: "home", path: "/", component: Home },
-  { name: "blog", path: "/article", component: Blog },
-  { name: "project", path: "/project", component: Project },
-  { name: "about", path: "/about", component: About },
-  { name: "message", path: "/message", component: Message },
+  { name: "Home", path: "/", component: Home },
+  { name: "Blog", path: "/blog", component: Blog },
+  { name: "Project", path: "/project", component: Project },
+  { name: "About", path: "/about", component: About },
+  { name: "Message", path: "/message", component: Message },
 ];

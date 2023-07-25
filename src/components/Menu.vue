@@ -3,9 +3,10 @@
     <RouterLink
       :exact="item.exact"
       v-for="item in items"
-      :key="item.path"
-      :to="item.path"
+      :key="item.link"
+      :to="{name: item.name}"
       active-class="selected"
+      exact-active-class=""
     >
       <Icon :type="item.icon" />
       <div class="text">{{ item.title }}</div>
@@ -23,31 +24,31 @@ export default {
     return {
       items: [
         {
-          path: "/",
+          name: "Home",
           title: "首页",
           icon: "home",
           exact: true
         },
         {
-          path: "/blog",
+          name: "Blog",
           title: "文章",
           icon: "blog",
           exact: false,
         },
         {
-          path: "/about",
+          name: "About",
           title: "关于我",
           icon: "about",
           exact: true
         },
         {
-          path: "/project",
+          name: "Project",
           title: "项目&效果",
           icon: "code",
           exact: true
         },
         {
-          path: "/message",
+          name: "Message",
           title: "留言板",
           icon: "chat",
           exact: true
