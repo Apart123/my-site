@@ -6,7 +6,7 @@ import styles from "./showMessage.module.less";
 export default function (options = {}) {
   const content = options.content || "";
   const type = options.type || "info";
-  const duration = options.duration || 2000;
+  const duration = options.duration || 1000;
   const container = options.container || document.body;
 
   let div = document.createElement("div");
@@ -18,8 +18,10 @@ export default function (options = {}) {
   div.className = `${styles.message} ${infoClassName}`;
 
   // 容器的 position 是否改动过
-  if (getComputedStyle(container).position === "static") {
-    container.style.position = "relative";
+  if (options.container) {
+    if (getComputedStyle(container).position === "static") {
+      container.style.position = "relative";
+    }
   }
 
   container.appendChild(div);
@@ -40,7 +42,7 @@ export default function (options = {}) {
       "transitionend",
       () => {
         div.remove();
-        options.callback && options.callback(); 
+        options.callback && options.callback();
       },
       { once: true }
     );
