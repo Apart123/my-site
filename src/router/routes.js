@@ -1,7 +1,7 @@
-import Home from "@/views/Home.vue";
-import Blog from "@/views/Blog.vue";
+import Home from "@/views/Home/index.vue";
+import Blog from "@/views/Blog/Blog.vue";
 import Project from "@/views/Project.vue";
-import About from "@/views/About.vue";
+import About from "@/views/About/About.vue";
 import Message from "@/views/Message.vue";
 
 export default [
@@ -11,3 +11,4 @@ export default [
   { name: "About", path: "/about", component: About },
   { name: "Message", path: "/message", component: Message },
 ];
+

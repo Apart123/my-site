@@ -11,10 +11,11 @@ import router from './router'
 // window.showMessage = showMessage;
 // showMessage("提交成功", "info", 2000);
 
-import "@/api/banner";
+// import "@/api/banner";
 
 import showMessage from "@/utils/showMessage";
 Vue.prototype.$showMessage = showMessage;
+
 new Vue({
   router,
   render: h => h(App),
