@@ -1,5 +1,6 @@
-import Mock from "mockjs";
 import "./banner";
+import "./blog";
+import Mock from "mockjs";
 
 // 网络延迟
 Mock.setup({

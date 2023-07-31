@@ -1,5 +1,5 @@
 import axios from "axios";
-import { showMessage } from "@/utils";
+import showMessage from "@/utils/showMessage";
 
 const ins = axios.create(); // 创建axios实例ins， ins 和 axios 一样
 ins.interceptors.response.use(function (resp) {
