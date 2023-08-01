@@ -2,7 +2,7 @@
   <div class="contact-container">
     <a href="https://github.com/Apart123" target="_blank">
       <Icon type="github" />
-      <div class="text">Apart123</div>
+      <div class="text">github</div>
     </a>
     <a href="mailto:18280977332@163com">
       <Icon type="mail" />

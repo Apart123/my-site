@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-container">文章</div>
+  <h2>BlogCategory</h2>
 </template>
 
 <script>

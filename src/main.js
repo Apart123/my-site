@@ -25,13 +25,13 @@ new Vue({
 }).$mount('#app')
 
 
-// 随便测试一下
-import * as blogApi from "@/api/blog";
+// 测试：获取远程数据（博客）
+// import * as blogApi from "@/api/blog";
 
-blogApi.getBlogTypes().then((r) => {
-  console.log("博客分类", r);
-});
+// blogApi.getBlogTypes().then((r) => {
+//   console.log("博客分类", r);
+// });
 
-blogApi.getBlogs(2, 10, 3).then((r) => {
-  console.log("博客", r);
-});
+// blogApi.getBlogs(2, 10, 3).then((r) => {
+//   console.log("博客", r);
+// });
