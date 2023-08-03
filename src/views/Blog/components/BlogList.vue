@@ -100,9 +100,11 @@ export default {
     },
   },
   watch: {
+    // 页面变化重新获取数据
+    // $route变化 => 调用
     async $route() {
       this.isLoading = true;
-      // 滚动高度为0
+      // 滚动高度为0 => loading效果在容器居中
       this.$refs.container.scrollTop = 0;
       this.data = await this.fetchData();
       this.isLoading = false;
@@ -121,7 +123,7 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth;  // 滚动效果
   ul {
     list-style: none;
     margin: 0;
