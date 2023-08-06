@@ -4,20 +4,42 @@
       <li v-for="item in data.rows" :key="item.id">
         <!-- 文章缩略图 -->
         <div class="thumb" v-if="item.thumb">
-          <a href="">
+          <RouterLink
+            :to="{
+              name: 'BlogDetail',
+              params: {
+                id: item.id,
+              },
+            }"
+          >
             <img :src="item.thumb" :alt="item.title" :title="item.title" />
-          </a>
+          </RouterLink>
         </div>
         <!-- 文章信息 -->
         <div class="main">
-          <a href="">
+          <RouterLink
+            :to="{
+              name: 'BlogDetail',
+              params: {
+                id: item.id,
+              },
+            }"
+          >
             <h2>{{ item.title }}</h2>
-          </a>
+          </RouterLink>
           <div class="aside">
             <span>日期：{{ formatDate(item.createDate) }}</span>
             <span>浏览：{{ item.scanNumber }}</span>
             <span>评论：{{ item.commentNumber }}</span>
-            <a href="/article/cate/8" class="">{{ item.category.name }}</a>
+            <RouterLink
+              :to="{
+                name: 'CategoryBlog',
+                params: {
+                  categoryId: item.category.id,
+                },
+              }"
+              >{{ item.category.name }}</RouterLink
+            >
           </div>
           <div class="desc">
             {{ item.description }}
@@ -44,7 +66,7 @@ import { getBlogs } from "@/api/blog.js";
 import { formatDate } from "@/utils";
 export default {
   // blog 数据格式是一个对象
-  mixins: [fetchData({})],  // 获取远程数据
+  mixins: [fetchData({})], // 获取远程数据
   components: {
     Pager,
   },
@@ -123,7 +145,7 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  scroll-behavior: smooth;  // 滚动效果
+  scroll-behavior: smooth; // 滚动效果
   ul {
     list-style: none;
     margin: 0;
