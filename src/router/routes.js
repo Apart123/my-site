@@ -3,7 +3,7 @@ import Blog from "@/views/Blog/index.vue";
 import Project from "@/views/Project.vue";
 import About from "@/views/About/About.vue";
 import Message from "@/views/Message.vue";
-import BlogDetail from "@/views/Blog/BlogDetail";
+import BlogDetail from "@/views/Blog/Detail";
 
 export default [
   { name: "Home", path: "/", component: Home },
