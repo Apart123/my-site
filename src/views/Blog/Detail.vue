@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="main-container" v-loading="isLoading">
-      <BlogDetail :blog="data" v-if="data" />
+      <!-- <BlogDetail :blog="data" v-if="data" /> -->
       <BlogComment v-if="!isLoading" />
     </div>
     <template #right>

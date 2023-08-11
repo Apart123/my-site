@@ -16,39 +16,27 @@ export async function getBlogs(page = 1, limit = 10, categoryid = -1) {
 /**
  * 获取博客分类
  */
-export async function getBlogTypes() {
+export async function getBlogCategories() {
   return await request.get("/api/blogtype");
 }
 
-// 详情页
-
-/**
- * 获取单个博客
- * @param {Number} id 博客id
- * @returns
- */
 export async function getBlog(id) {
-  return await request(`/api/blog/${id}`);
+  return await request.get(`/api/blog/${id}`);
 }
 
 /**
  * 提交评论
- * @param {*} commentInfo 评论信息
- * @returns
  */
 export async function postComment(commentInfo) {
-  return await request(`/api/comment/`, commentInfo);
+  return await request.post(`/api/comment`, commentInfo);
 }
 
-/**
- * 分页获取评论
- */
 export async function getComments(blogid, page = 1, limit = 10) {
-  return await request("/api/comment", {
+  return await request.get("/api/comment", {
     params: {
       blogid,
       page,
-      limit
-    }
-  })
+      limit,
+    },
+  });
 }
