@@ -53,6 +53,9 @@ export default {
     // 监听窗口变化
     window.addEventListener("resize", this.handleResize);
   },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+  },
   computed: {
     marginTop() {
       // 滚动轮播图的高度

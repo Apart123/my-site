@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-list-container" ref="container" v-loading="isLoading">
+  <div class="blog-list-container" ref="mainContainer" v-loading="isLoading">
     <ul>
       <li v-for="item in data.rows" :key="item.id">
         <!-- 文章缩略图 -->
@@ -86,6 +86,15 @@ export default {
       };
     },
   },
+  mounted() {
+    this.$bus.$on("setMainScroll", this.handleSetMainScroll);
+    this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
+  },
+  beforeDestroy() {
+    this.$bus.$emit("mainScroll");
+    this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
+    this.$bus.$off("setMainScroll", this.handleSetMainScroll);
+  },
   methods: {
     formatDate,
     async fetchData() {
@@ -119,6 +128,13 @@ export default {
           },
         });
       }
+    },
+
+    handleScroll() {
+      this.$bus.$emit("mainScroll", this.$refs.mainContainer);
+    },
+    handleSetMainScroll(scrollTop) {
+      this.$refs.mainContainer.scrollTop = scrollTop;
     },
   },
   watch: {

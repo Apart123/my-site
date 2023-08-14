@@ -1,6 +1,6 @@
 <template>
-  <div class="carousel-item-container">
-    <div class="carousel-img">
+  <div class="carousel-item-container" ref="container">
+    <div class="carousel-img"  ref="image">
       <ImageLoader
         @load="this.showWords"
         :src="carousel.bigImg"
@@ -28,6 +28,10 @@ export default {
   mounted() {
     this.titleWidth = this.$refs.title.clientWidth;
     this.descWidth = this.$refs.desc.clientWidth;
+    window.addEventListener("resize", this.setSize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.setSize);
   },
   methods: {
     // 调用该方法，显示文字

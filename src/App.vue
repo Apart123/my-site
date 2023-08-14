@@ -10,16 +10,19 @@
         <RouterView />
       </template>
     </Layout>
+    <ToTop />
   </div>
 </template>
 
 <script>
 import Layout from "./components/Layout.vue";
 import SiteAside from "./components/SiteAside.vue";
+import ToTop from "./components/ToTop.vue";
 export default {
   components: {
     Layout,
     SiteAside,
+    ToTop,
   },
 };
 </script>

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import MessageArea from "@/components/MessageArea.vue";
+import MessageArea from "@/components/MessageArea";
 import fetchData from "@/mixins/fetchData.js";
 import { getComments, postComment } from "@/api/blog.js";
 export default {
@@ -25,9 +25,48 @@ export default {
       limit: 10,
     };
   },
+  created() {
+    // 监听主区域滚动条
+    this.$bus.$on("mainScroll", this.handleScroll);
+  },
+  destroyed() {
+    this.$bus.$off("mainScroll", this.handleScroll);
+  },
+  computed: {
+    hasMore() {
+      return this.data.rows.length < this.data.total;
+    },
+  },
   methods: {
+    // 处理滚动事件
+    // dom 需要知道dom元素滚动到哪个位置
+    handleScroll(dom) {
+      if (this.isLoading || !dom) {
+        // 目前正在加载更多
+        return;
+      }
+      const range = 100; // 设置一个可接受的范围，在这个范围内都算达到了底部
+      const dec = Math.abs(dom.scrollTop + dom.clientHeight - dom.scrollHeight);
+      if (dec <= range) {
+        // 到达底部
+        this.fetchMore();
+      }
+    },
     async fetchData() {
       return await getComments(this.$route.params.id, this.page, this.limit);
+    },
+    // 加载下一页
+    async fetchMore() {
+      if (!this.hasMore) {
+        // 没有更多的数据
+        return;
+      }
+      this.isLoading = true;
+      this.page++;
+      const resp = await this.fetchData();
+      this.data.total = resp.total;
+      this.data.rows = this.data.rows.concat(resp.rows);
+      this.isLoading = false;
     },
     async handleSubmit(formData, callback) {
       const resp = await postComment({
@@ -36,7 +75,7 @@ export default {
       });
       this.data.rows.unshift(resp);
       this.data.total++;
-      callback("评论成功"); // 通知子组件，我这边处理完了，你继续
+      callback("评论成功"); // 告诉子组件，我这边处理完了，你继续
     },
   },
 };
