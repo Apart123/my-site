@@ -64,9 +64,11 @@ import Pager from "@/components/Pager";
 import fetchData from "@/mixins/fetchData.js";
 import { getBlogs } from "@/api/blog.js";
 import { formatDate } from "@/utils";
+import mainScroll from "@/mixins/mainScroll.js";
 export default {
   // blog 数据格式是一个对象
-  mixins: [fetchData({})], // 获取远程数据
+  // fetchData({}) 获取远程数据
+  mixins: [fetchData({}), mainScroll("mainContainer")], 
   components: {
     Pager,
   },
@@ -85,15 +87,6 @@ export default {
         limit,
       };
     },
-  },
-  mounted() {
-    this.$bus.$on("setMainScroll", this.handleSetMainScroll);
-    this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
-  },
-  beforeDestroy() {
-    this.$bus.$emit("mainScroll");
-    this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
-    this.$bus.$off("setMainScroll", this.handleSetMainScroll);
   },
   methods: {
     formatDate,
@@ -132,9 +125,6 @@ export default {
 
     handleScroll() {
       this.$bus.$emit("mainScroll", this.$refs.mainContainer);
-    },
-    handleSetMainScroll(scrollTop) {
-      this.$refs.mainContainer.scrollTop = scrollTop;
     },
   },
   watch: {

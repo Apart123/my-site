@@ -19,6 +19,7 @@ import Layout from "@/components/Layout.vue";
 import BlogDetail from "./components/BlogDetail.vue";
 import BlogTOC from "./components/BlogTOC.vue";
 import BlogComment from "./components/BlogComment.vue";
+import mainScroll from "@/mixins/mainScroll.js";
 
 export default {
   components: {
@@ -27,7 +28,7 @@ export default {
     BlogTOC,
     BlogComment,
   },
-  mixins: [fetchData(null)],
+  mixins: [fetchData(null), mainScroll("mainContainer")],
   methods: {
     async fetchData() {
       return await getBlog(this.$route.params.id);
@@ -36,18 +37,6 @@ export default {
       // 事件总线：触发事件
       this.$bus.$emit("mainScroll", this.$refs.mainContainer);
     },
-    handleSetMainScroll(scrollTop) {
-      this.$refs.mainContainer.scrollTop = scrollTop;
-    },
-  },
-  mounted() {
-    this.$bus.$on("setMainScroll", this.handleSetMainScroll);
-    this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
-  },
-  beforeDestroy() {
-    this.$bus.$emit("mainScroll");
-    this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
-    this.$bus.$off("setMainScroll", this.handleSetMainScroll);
   },
   updated() {
     // 刷新页面跳转到锚链接位置
