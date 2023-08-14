@@ -47,6 +47,17 @@ export default {
       this.$refs.desc.style.transition = "2s 1s";
       this.$refs.desc.style.width = this.descWidth + "px";
     },
+    setSize() {
+      this.containerSize = {
+        width: this.$refs.container.clientWidth,
+        height: this.$refs.container.clientHeight,
+      };
+
+      this.innerSize = {
+        width: this.$refs.image.clientWidth,
+        height: this.$refs.image.clientHeight,
+      };
+    },
   },
 };
 </script>
