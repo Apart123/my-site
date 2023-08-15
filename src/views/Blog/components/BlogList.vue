@@ -12,7 +12,7 @@
               },
             }"
           >
-            <img :src="item.thumb" :alt="item.title" :title="item.title" />
+            <img v-lazy="item.thumb" :alt="item.title" :title="item.title" />
           </RouterLink>
         </div>
         <!-- 文章信息 -->
@@ -133,7 +133,7 @@ export default {
     async $route() {
       this.isLoading = true;
       // 滚动高度为0 => loading效果在容器居中
-      this.$refs.container.scrollTop = 0;
+      this.$refs.mainContainer.scrollTop = 0;
       this.data = await this.fetchData();
       this.isLoading = false;
     },

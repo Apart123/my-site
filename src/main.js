@@ -9,7 +9,16 @@ Vue.prototype.$showMessage = showMessage;
 
 // 注册全局指令
 import vLoading from "@/directives/loading";
+import vLazy from "@/directives/lazy";
 Vue.directive("loading", vLoading);
+Vue.directive("lazy", vLazy);
+
+new Vue({
+  router,
+  render: h => h(App),
+}).$mount('#app')
+
+
 
 // Vue.config.productionTip = false
 
@@ -20,10 +29,6 @@ Vue.directive("loading", vLoading);
 
 // import "@/api/banner";
 
-new Vue({
-  router,
-  render: h => h(App),
-}).$mount('#app')
 
 
 // 测试：获取远程数据（博客）
