@@ -5,6 +5,9 @@ import "@/styles/global.less"
 import router from './router'
 import showMessage from "@/utils/showMessage";
 import "./eventBus";
+import store from "./store";
+// 一开始就触发
+store.dispatch("setting/fetchSetting");
 Vue.prototype.$showMessage = showMessage;
 
 // 注册全局指令
@@ -15,6 +18,7 @@ Vue.directive("lazy", vLazy);
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
 
@@ -59,3 +63,11 @@ new Vue({
 // window.eventBus = eventBus;
 // window.handler1 = handler1;
 // window.handler2 = handler2;
+
+
+// 测试 setting api
+// import { getSetting } from "./api/setting";
+
+// getSetting().then((resp) => {
+//   console.log(resp);
+// });

@@ -1,5 +1,10 @@
 <template>
-  <div v-loading="isLoading" class="home-container" ref="container" @wheel="handleWheel">
+  <div
+    v-loading="loading"
+    class="home-container"
+    ref="container"
+    @wheel="handleWheel"
+  >
     <ul
       class="carousel-container"
       :style="{ marginTop }"
@@ -30,13 +35,18 @@
   </div>
 </template>
 <script>
-import { getBanners } from "@/api/banner";
+import { mapState } from "vuex";
+// import { getBanners } from "@/api/banner";
 import Icon from "@/components/Icon.vue";
 import CarouseItem from "@/views/Home/CarouselItem";
-import fetchData from "@/mixins/fetchData.js";
+// import fetchData from "@/mixins/fetchData.js";
 
 export default {
-  mixins: [fetchData([])],
+  // mixins: [fetchData([])],
+  components: {
+    CarouseItem,
+    Icon,
+  },
   data() {
     return {
       index: 0, // 当前显示的是第几张图
@@ -44,9 +54,8 @@ export default {
       switching: false, // 是否正在切换
     };
   },
-  components: {
-    CarouseItem,
-    Icon,
+  created() {
+    this.$store.dispatch("banner/fetchBanner");
   },
   mounted() {
     this.containerHeight = this.$refs.container.clientHeight;
@@ -61,6 +70,7 @@ export default {
       // 滚动轮播图的高度
       return -this.index * this.containerHeight + "px";
     },
+    ...mapState("banner", ["loading", "data"]),
   },
   methods: {
     // 切换轮播图
@@ -89,9 +99,9 @@ export default {
     handleResize() {
       this.containerHeight = this.$refs.container.clientHeight;
     },
-    async fetchData() {
-      return await getBanners();
-    },
+    // async fetchData() {
+    //   return await getBanners();
+    // },
   },
 };
 </script>

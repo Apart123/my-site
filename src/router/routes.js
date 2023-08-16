@@ -6,12 +6,61 @@ import Message from "@/views/Message.vue";
 import BlogDetail from "@/views/Blog/Detail.vue";
 
 export default [
-  { name: "Home", path: "/", component: Home },
-  { name: "Blog", path: "/article", component: Blog },
-  { name: "CategoryBlog", path: "/article/cate/:categoryId", component: Blog },
-  { name: "BlogDetail", path: "/article/:id", component: BlogDetail },
-  { name: "Project", path: "/project", component: Project },
-  { name: "About", path: "/about", component: About },
-  { name: "Message", path: "/message", component: Message },
+  {
+    name: "Home",
+    path: "/",
+    component: Home,
+    meta: {
+      title: "首页",
+    },
+  },
+  {
+    name: "About",
+    path: "/about",
+    component: About,
+    meta: {
+      title: "关于我",
+    },
+  },
+  {
+    name: "Blog",
+    path: "/article",
+    component: Blog,
+    meta: {
+      title: "文章",
+    },
+  },
+  {
+    name: "CategoryBlog",
+    path: "/article/cate/:categoryId",
+    component: Blog,
+    meta: {
+      title: "文章",
+    },
+  },
+  {
+    name: "BlogDetail",
+    path: "/article/:id",
+    component: BlogDetail,
+    meta: {
+      title: "文章详情",
+    },
+  },
+  {
+    name: "Project",
+    path: "/project",
+    component: Project,
+    meta: {
+      title: "项目&效果",
+    },
+  },
+  {
+    name: "Message",
+    path: "/message",
+    component: Message,
+    meta: {
+      title: "留言板",
+    },
+  },
 ];
 
