@@ -3,6 +3,7 @@ import "./blog";
 import "./setting";
 import "./about";
 import "./project";
+import "./message";
 import Mock from "mockjs";
 
 // 网络延迟
