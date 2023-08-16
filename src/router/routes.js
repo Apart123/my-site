@@ -1,8 +1,8 @@
 import Home from "@/views/Home/index.vue";
 import Blog from "@/views/Blog/index.vue";
-import Project from "@/views/Project.vue";
-import About from "@/views/About/About.vue";
-import Message from "@/views/Message.vue";
+import Project from "@/views/Project/index.vue";
+import About from "@/views/About/index.vue";
+import Message from "@/views/Message/index.vue";
 import BlogDetail from "@/views/Blog/Detail.vue";
 
 export default [
