@@ -2,6 +2,7 @@ import "./banner";
 import "./blog";
 import "./setting";
 import "./about";
+import "./project";
 import Mock from "mockjs";
 
 // 网络延迟
