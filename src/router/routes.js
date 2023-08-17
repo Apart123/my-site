@@ -1,3 +1,4 @@
+import NotFound from "@/views/NotFound.vue";
 import "nprogress/nprogress.css";
 import { start, done, configure } from "nprogress";
 
@@ -96,5 +97,10 @@ export default [
     meta: {
       title: "留言板",
     },
+  },
+  {
+    name: "NotFound",
+    path: "*",
+    component: NotFound,
   },
 ];

@@ -32,7 +32,13 @@ export default {
   mixins: [fetchData(null), mainScroll("mainContainer")],
   methods: {
     async fetchData() {
-      const resp = await getBlog(this.$route.params.id);
+      let resp = await getBlog(this.$route.params.id);
+      // resp = null;
+      if (!resp) {
+        // 文章不存在，跳转到 404 页面
+        this.$router.push("/404");
+        return;
+      }
       titleController.setRouteTitle(resp.title);
       return resp;
     },
