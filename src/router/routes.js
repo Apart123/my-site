@@ -1,5 +1,5 @@
-import NotFound from "@/views/NotFound.vue";
 import "nprogress/nprogress.css";
+import NotFound from "@/views/NotFound.vue";
 import { start, done, configure } from "nprogress";
 
 configure({

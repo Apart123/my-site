@@ -30,6 +30,7 @@ export default {
     },
   },
   computed: {
+    // 图标类样式
     fontClass() {
       return classMap[this.type];
     },

@@ -9,11 +9,10 @@ if (!window.VueRouter) {
 
 const router = new VueRouter({
   // 配置
-  routes,
+  routes, // 路由匹配规则
   mode: "history",
 });
 
-// 路由导航
 router.afterEach((to, from) => {
   if (to.meta.title) {
     titleController.setRouteTitle(to.meta.title);
@@ -21,4 +20,3 @@ router.afterEach((to, from) => {
 });
 
 export default router;
-

@@ -8,7 +8,7 @@
 <script>
 import RightList from "./RightList";
 import fetchData from "@/mixins/fetchData.js";
-import { getBlogTypes } from "@/api/blog.js";
+import { getBlogCategories } from "@/api/blog.js";
 export default {
   mixins: [fetchData([])],
   components: {
@@ -19,24 +19,20 @@ export default {
       return +this.$route.params.categoryId || -1;
     },
     limit() {
-      // 页容量
       return +this.$route.query.limit || 10;
     },
     list() {
-      // 文章总数
       const totalArticleCount = this.data.reduce(
         (a, b) => a + b.articleCount,
         0
       );
 
-      // 分类列表  
       const result = [
         { name: "全部", id: -1, articleCount: totalArticleCount },
         ...this.data,
       ];
       return result.map((it) => ({
         ...it,
-        // 是否激活
         isSelect: it.id === this.categoryId,
         aside: `${it.articleCount}篇`,
       }));
@@ -44,19 +40,16 @@ export default {
   },
   methods: {
     async fetchData() {
-      return await getBlogTypes();
+      return await getBlogCategories();
     },
-    // 选中分类
     handleSelect(item) {
       const query = {
         page: 1,
         limit: this.limit,
       };
-      // 选中改变路由
       // 跳转到 当前的分类id  当前的页容量  newPage的页码
       if (item.id === -1) {
         this.$router.push({
-          // 全部
           name: "Blog",
           query,
         });
@@ -86,7 +79,7 @@ export default {
     font-weight: bold;
     letter-spacing: 2px;
     font-size: 1em;
-    margin-top: 0;
+    margin: 0;
   }
 }
 </style>

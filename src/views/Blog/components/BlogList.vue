@@ -2,7 +2,6 @@
   <div class="blog-list-container" ref="mainContainer" v-loading="isLoading">
     <ul>
       <li v-for="item in data.rows" :key="item.id">
-        <!-- 文章缩略图 -->
         <div class="thumb" v-if="item.thumb">
           <RouterLink
             :to="{
@@ -15,7 +14,6 @@
             <img v-lazy="item.thumb" :alt="item.title" :title="item.title" />
           </RouterLink>
         </div>
-        <!-- 文章信息 -->
         <div class="main">
           <RouterLink
             :to="{
@@ -38,8 +36,9 @@
                   categoryId: item.category.id,
                 },
               }"
-              >{{ item.category.name }}</RouterLink
             >
+              {{ item.category.name }}
+            </RouterLink>
           </div>
           <div class="desc">
             {{ item.description }}
@@ -55,7 +54,7 @@
       :total="data.total"
       :limit="routeInfo.limit"
       :visibleNumber="10"
-      @changePage="handlePageChange"
+      @pageChange="handlePageChange"
     />
   </div>
 </template>
@@ -68,9 +67,7 @@ import { formatDate } from "@/utils";
 import mainScroll from "@/mixins/mainScroll.js";
 import Empty from "@/components/Empty";
 export default {
-  // blog 数据格式是一个对象
-  // fetchData({}) 获取远程数据
-  mixins: [fetchData({total: 0, rows: []}), mainScroll("mainContainer")], 
+  mixins: [fetchData({ total: 0, rows: [] }), mainScroll("mainContainer")],
   components: {
     Pager,
     Empty,
@@ -78,11 +75,8 @@ export default {
   computed: {
     // 获取路由信息
     routeInfo() {
-      // 分类
       const categoryId = +this.$route.params.categoryId || -1;
-      // 第几页
       const page = +this.$route.query.page || 1;
-      // 页容量
       const limit = +this.$route.query.limit || 10;
       return {
         categoryId,
@@ -100,7 +94,6 @@ export default {
         this.routeInfo.categoryId
       );
     },
-    // 处理页码变化
     handlePageChange(newPage) {
       const query = {
         page: newPage,
@@ -125,17 +118,11 @@ export default {
         });
       }
     },
-
-    handleScroll() {
-      this.$bus.$emit("mainScroll", this.$refs.mainContainer);
-    },
   },
   watch: {
-    // 页面变化重新获取数据
-    // $route变化 => 调用
     async $route() {
       this.isLoading = true;
-      // 滚动高度为0 => loading效果在容器居中
+      // 滚动高度为0
       this.$refs.mainContainer.scrollTop = 0;
       this.data = await this.fetchData();
       this.isLoading = false;
@@ -154,7 +141,7 @@ export default {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  scroll-behavior: smooth; // 滚动效果
+  scroll-behavior: smooth;
   ul {
     list-style: none;
     margin: 0;

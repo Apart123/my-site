@@ -1,8 +1,8 @@
 import axios from "axios";
-import showMessage from "@/utils/showMessage";
+import showMessage from "../utils/showMessage";
 
-const ins = axios.create(); // 创建axios实例ins， ins 和 axios 一样
-ins.interceptors.response.use(function (resp) {
+const ins = axios.create(); // 创建一个axios的实例
+ins.interceptors.response.use(function(resp) {
   if (resp.data.code !== 0) {
     showMessage({
       content: resp.data.msg,

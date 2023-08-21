@@ -34,7 +34,7 @@ export default {
       };
       return getTOC(this.toc);
     },
-    // 根据toc得到它们对应的元素数组[包括自身和children]
+    // 根据toc得到它们对应的元素数组
     doms() {
       const doms = [];
       const addToDoms = (toc) => {
@@ -51,7 +51,6 @@ export default {
   },
   created() {
     this.setSelectDebounce = debounce(this.setSelect, 50);
-    // 事件总线：监听事件
     this.$bus.$on("mainScroll", this.setSelectDebounce);
   },
   destroyed() {
@@ -62,15 +61,17 @@ export default {
       location.hash = item.anchor;
     },
     // 设置activeAnchor为正确的值
-    setSelect() {
+    setSelect(scrollDom) {
+      if (!scrollDom) {
+        return;
+      }
       this.activeAnchor = ""; // 由于后续要重新设置，先清空之前的状态
       const range = 200;
       for (const dom of this.doms) {
-        // 判断当前 dom 元素是否应该被选中
+        // 看一下当前这个dom元素是不是应该被选中
         if (!dom) {
           continue;
         }
-        // dom 元素存在
         // 得到元素离视口顶部的距离
         const top = dom.getBoundingClientRect().top;
         if (top >= 0 && top <= range) {

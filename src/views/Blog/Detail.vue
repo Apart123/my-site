@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div ref="mainContainer"  class="main-container" v-loading="isLoading">
+    <div ref="mainContainer" class="main-container" v-loading="isLoading">
       <BlogDetail :blog="data" v-if="data" />
       <BlogComment v-if="!isLoading" />
     </div>
@@ -15,13 +15,12 @@
 <script>
 import fetchData from "@/mixins/fetchData";
 import { getBlog } from "@/api/blog";
-import Layout from "@/components/Layout.vue";
-import BlogDetail from "./components/BlogDetail.vue";
-import BlogTOC from "./components/BlogTOC.vue";
-import BlogComment from "./components/BlogComment.vue";
+import Layout from "@/components/Layout";
+import BlogDetail from "./components/BlogDetail";
+import BlogTOC from "./components/BlogTOC";
+import BlogComment from "./components/BlogComment";
 import mainScroll from "@/mixins/mainScroll.js";
 import { titleController } from "@/utils";
-
 export default {
   components: {
     Layout,
@@ -35,20 +34,16 @@ export default {
       let resp = await getBlog(this.$route.params.id);
       // resp = null;
       if (!resp) {
-        // 文章不存在，跳转到 404 页面
+        // 文章不存在
         this.$router.push("/404");
         return;
       }
       titleController.setRouteTitle(resp.title);
       return resp;
     },
-    handleScroll() {
-      // 事件总线：触发事件
-      this.$bus.$emit("mainScroll", this.$refs.mainContainer);
-    },
   },
+
   updated() {
-    // 刷新页面跳转到锚链接位置
     const hash = location.hash;
     location.hash = "";
     setTimeout(() => {
