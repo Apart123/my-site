@@ -1,5 +1,5 @@
 // 入口文件
-import "./mock";
+// import "./mock";
 import Vue from "vue";
 import App from "./App.vue";
 import "./styles/global.less";
