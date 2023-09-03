@@ -28,6 +28,7 @@
       v-model="form.select"
       slot="prepend"
       placeholder="请选择文章分类"
+      @change="change"
     >
       <el-option
         v-for="item in blogType"
@@ -43,7 +44,7 @@
         type="primary"
         style="margin-top: 15px"
         @click="addArticleHandle"
-        >{{btnContent}}</el-button
+        >{{ btnContent }}</el-button
       >
     </div>
   </div>
@@ -73,7 +74,7 @@ export default {
       editorOptions: {
         language: "zh-CN",
       },
-      btnContent : '发布文章'
+      btnContent: "发布文章",
     };
   },
   created() {
@@ -90,7 +91,7 @@ export default {
         this.form.select = data.category === null ? "" : data.category.id;
         this.$refs.toastuiEditor.invoke("setHTML", data.htmlContent);
       });
-      this.btnContent = "确认修改"
+      this.btnContent = "确认修改";
     }
   },
   components: {
@@ -127,14 +128,17 @@ export default {
           });
         } else {
           // 说明是要编辑
-            editBlog({id : this.form.id, data : obj}).then(()=>{
-            this.$router.push('/blogList'); // 跳转到文章列表
-            this.$message.success('文章修改成功');
-        })
+          editBlog({ id: this.form.id, data: obj }).then(() => {
+            this.$router.push("/blogList"); // 跳转到文章列表
+            this.$message.success("文章修改成功");
+          });
         }
       } else {
         this.$message.error("请填写所有内容");
       }
+    },
+    change() {
+      this.$forceUpdate();
     },
   },
 };

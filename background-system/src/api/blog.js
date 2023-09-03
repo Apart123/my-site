@@ -1,37 +1,34 @@
-import request from "@/utils/request";
+import request from '@/utils/request'
 
-/**
- * 分页获取文章
- * @param {*} page 页码数
- * @param {*} limit 每一页的显示数量
- * @returns 
- */
-export function findBlog(page = 1, limit = 10) {
-  return request({
-    url: "/api/blog",
-    method: "get",
-    params: {
-      page,
-      limit,
-    }
-  })
+// 分页获取文章
+// page 代表页码数，limit 代表每一页显示的数量
+export function findBlog(page=1,limit=10){
+    return request({
+        url : '/api/blog',
+        method : 'get',
+        params : {
+            page,
+            limit
+        }
+    })
 }
+
 
 // 删除文章
 export function delOneBlog(id){
-  return request({
-      url : `/api/blog/${id}`,
-      method : 'delete'
-  })
+    return request({
+        url : `/api/blog/${id}`,
+        method : 'delete'
+    })
 }
 
 // 添加文章
 export function addBlog(data){
-  return request({
-      url : '/api/blog',
-      method : 'post',
-      data
-  })
+    return request({
+        url : '/api/blog',
+        method : 'post',
+        data
+    })
 }
 
 // 编辑文章
@@ -41,18 +38,18 @@ export function addBlog(data){
 //     data : 修改的文章的所有内容
 // }
 export function editBlog(blogInfo){
-  return request({
-      url : `/api/blog/${blogInfo.id}`,
-      method : 'put',
-      data : blogInfo.data
-  })
+    return request({
+        url : `/api/blog/${blogInfo.id}`,
+        method : 'put',
+        data : blogInfo.data
+    })
 }
 
 
 // 根据 id 查找某一篇文章
 export function findOneBlog(id){
-  return request({
-      url : `/api/blog/${id}`,
-      method : 'get'
-  })
+    return request({
+        url : `/api/blog/${id}`,
+        method : 'get'
+    })
 }

@@ -17,13 +17,14 @@
 </template>
 
 <script>
-import { server_URL } from "@/urlConfig.js";
+// import { server_URL } from "@/urlConfig.js";
 export default {
   props: ["uploadTitle", "value"],
   computed: {
     imageUrl() {
       if (this.value) {
-        return server_URL + this.value;
+        // return server_URL + this.value;
+        return this.value;
       }
     },
     headers() {

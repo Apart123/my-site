@@ -55,7 +55,7 @@
 
 <script>
 import Upload from "@/components/Upload.vue";
-import { addProject } from "@/api/project.js";
+import {addProject} from '@/api/project.js'
 export default {
   data() {
     return {
@@ -73,16 +73,16 @@ export default {
     Upload,
   },
   methods: {
-    addProjectHandle() {
-      let obj = { ...this.form };
-      obj.description = obj.description.split(",");
-      obj.order = parseInt(obj.order);
-      addProject(obj).then(() => {
-        console.log(obj);
-        this.$router.push("/projectsList");
-        this.$message.success("添加项目成功");
-      });
-    },
+    addProjectHandle(){
+        let obj = {...this.form};
+        obj.description = obj.description.split(',');
+        obj.order = parseInt(obj.order);
+        addProject(obj).then(()=>{
+            this.$router.push('/projectsList');
+            this.$message.success('添加项目成功');
+        })
+
+    }
   },
 };
 </script>

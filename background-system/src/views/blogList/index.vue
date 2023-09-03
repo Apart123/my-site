@@ -98,6 +98,7 @@
       :page-sizes="[5, 10, 20]"
       layout="prev, pager, next, total, ->, sizes, jumper"
       :total="count"
+       :current-page.sync="pagerCurrentPage"
       @size-change="sizeChangeHandle"
       @current-change="currentChangeHandle"
       @prev-click="prevClickHandle"
@@ -120,7 +121,7 @@ export default {
       currentPage: 1, // 当前页码，默认进来是第一页
       totalPage: 0, // 总页数
       count: 0, // 数据总条数
-    //   pagerCurrentPage: 1, // 分页栏当前页码
+      pagerCurrentPage: 1, // 分页栏当前页码
     };
   },
   created() {
@@ -132,7 +133,7 @@ export default {
         this.data = data.rows;
         for (var i of this.data) {
           i.createDate = formatDate(i.createDate);
-          i.thumb = server_URL + i.thumb;
+          // i.thumb = server_URL + i.thumb;
           this.srcList.push(i.thumb);
         }
         this.count = data.total;
@@ -185,7 +186,7 @@ export default {
     sizeChangeHandle(pagerNum) {
         this.eachPage = parseInt(pagerNum);
         this.currentPage = 1;
-        // this.pagerCurrentPage = 1;
+        this.pagerCurrentPage = 1;
         this.fetchData();
     },
     currentChangeHandle(pageNum) {

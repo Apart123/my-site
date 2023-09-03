@@ -15,7 +15,7 @@
         <template slot-scope="scope">
           <el-image
             style="width: 100px"
-            :src="scope.row.midImg2"
+            :src="scope.row.midImg"
             fit="fill"
           ></el-image>
         </template>
@@ -24,12 +24,12 @@
         <template slot-scope="scope">
           <el-image
             style="width: 100px"
-            :src="scope.row.bigImg2"
+            :src="scope.row.bigImg"
             fit="fill"
           ></el-image>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" width="120">
+      <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-tooltip
             class="item"
@@ -71,7 +71,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="首页大图">
+            <el-form-item label="首页中图">
               <!-- 大图 -->
               <Upload v-model="form.bigImg" />
             </el-form-item>
@@ -80,11 +80,14 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="editBannerConfirm">确 定</el-button>
+        <el-button type="primary" @click="editBannerConfirm"
+          >确 定</el-button
+        >
       </div>
     </el-dialog>
   </div>
 </template>
+
 
 <script>
 import { getBanner, setBanner } from "@/api/banner.js";
@@ -116,44 +119,35 @@ export default {
     fetchData() {
       getBanner().then((res) => {
         this.data = res.data;
-        for (var item of this.data) {
-          item.midImg2 = server_URL + item.midImg;
-          item.bigImg2 = server_URL + item.bigImg;
-        }
       });
     },
     editBannerHandle(bannerInfo) {
-      // 1. 将 bannerInfo 的数据给 form
-      // 2. 打开 dialog
+      // 1. 将 bannerInfo 的数据给 form 2. 打开 dialog
       this.form = { ...bannerInfo };
 
       this.dialogFormVisible = true;
     },
-    /**
-     * 编辑确定
-     */
-    editBannerConfirm() {
+    editBannerConfirm(){
       // 从表单里面拿到用户修改的数据，发送给服务器
-      // 因为 api 文档要求三个首页标语都要发送过去，哪怕只改了其中一个也是全部发送
+      // 因为 api 文档要求三个首页标语都要发送过去，哪怕只改了其中一个
       let arr = [...this.data];
-      for (var i = 0; i < arr.length; i++) {
-        if (arr[i].id == this.form.id) {
-          arr[i] = this.form;
+      for(var i=0;i<arr.length;i++){
+        if(arr[i].id == this.form.id){
+          arr[i] = this.form
         }
       }
-      // 发送请求
-      setBanner(arr).then((res) => {
+      setBanner(arr).then(res=>{
         this.dialogFormVisible = false; // 关闭掉对话框
         this.$message({
-          message: "修改成功",
-          type: "success",
+          message: '修改成功',
+          type: 'success'
         });
-        // 重新获取数据
         this.fetchData();
-      });
-    },
+      })
+    }
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

@@ -53,6 +53,7 @@
               @click="editBlogTypeHandle(scope.row)"
             ></el-button>
           </el-tooltip>
+
           <!-- 删除按钮 -->
           <el-tooltip
             class="item"
@@ -110,14 +111,14 @@ export default {
   data() {
     return {
       input: "",
-      select: "1", // 分类等级
+      select: "1",
       listLoading: false,
       data: [],
-      dialogFormVisible: false,
-      form: {
-        name: "",
-        order: "",
-      },
+      dialogFormVisible : false,
+      form : {
+          name : '',
+          order : ''
+      }
     };
   },
   created() {
@@ -137,36 +138,31 @@ export default {
         addBlogType({ name: this.input, order: this.select }).then(() => {
           this.fetchData();
           this.$message.success("添加分类成功");
-          // 重置
-          this.input = "";
         });
       } else {
         this.$message.error("分类名称不能为空");
       }
     },
     // 编辑文章分类
-    editBlogTypeHandle({ id }) {
-      // 1. 回填到表单    
-      findOneBlogType(id).then((res) => {
-        this.form = res.data;
-        // 2. 打开 dialog
-        this.dialogFormVisible = true;
-      });
+    editBlogTypeHandle({id}) {
+        // 1. 回填到表单    2. 打开 dialog
+        findOneBlogType(id).then(res=>{
+            this.form = res.data;
+            this.dialogFormVisible = true;
+        })
     },
     // 确认编辑文章分类
-    confirmEditBlogTypeHandle() {
-      updateOneBlogType({
-        id: this.form.id,
-        data: this.form,
-      }).then(() => {
-        // 重新请求数据
-        this.fetchData();
-        this.$message.success("更新分类信息成功");
-        // 关闭 dialog
-        this.dialogFormVisible = false;
-      });
+    confirmEditBlogTypeHandle(){
+        updateOneBlogType({
+            id : this.form.id,
+            data : this.form
+        }).then(()=>{
+            this.fetchData();
+            this.$message.success('更新分类信息成功');
+            this.dialogFormVisible = false;
+        })
     },
-    // 删除文章分类 id: 分类id
+    // 删除文章分类
     deleteBlogTypeHandle({ id }) {
       this.$confirm(
         "删除该分类后，该分类下面的所有文章将变为未分类状态，是否继续?",

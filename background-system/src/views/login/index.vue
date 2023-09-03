@@ -192,11 +192,11 @@ export default {
             .catch((res) => {
               // this.loading = false;
               if(typeof res === 'string'){
-                // 验证码错误
+                // 说明是验证码错误
                 this.$message.error('验证码错误');
               } else {
-                // 账号密码错误
-                this.$message.error('账号或密码错误');
+                // 说明是账号密码错误
+                this.$message.error('账号密码错误');
               }
               // 接下来需要重新请求二维码
               this.getCaptchaFunc();
