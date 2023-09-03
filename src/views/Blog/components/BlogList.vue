@@ -75,7 +75,7 @@ export default {
   computed: {
     // 获取路由信息
     routeInfo() {
-      const categoryId = +this.$route.params.categoryId || -1;
+      const categoryId = this.$route.params.categoryId || -1;
       const page = +this.$route.query.page || 1;
       const limit = +this.$route.query.limit || 10;
       return {
@@ -88,11 +88,17 @@ export default {
   methods: {
     formatDate,
     async fetchData() {
-      return await getBlogs(
+      var result = await getBlogs(
         this.routeInfo.page,
         this.routeInfo.limit,
         this.routeInfo.categoryId
       );
+      for(var item of result.rows){
+        // item.thumb = 'http://localhost:7001' + item.thumb
+        // item.thumb = 'http://47.108.144.102:7001' + item.thumb
+        item.thumb = item.thumb
+      }
+      return result;
     },
     handlePageChange(newPage) {
       const query = {

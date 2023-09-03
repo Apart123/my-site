@@ -4,7 +4,6 @@ import banner from "./banner";
 import setting from "./setting";
 import about from "./about";
 import project from "./project";
-
 if (!window.Vuex) {
   install(Vue);
 }

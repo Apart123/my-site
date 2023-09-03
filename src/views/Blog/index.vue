@@ -9,7 +9,7 @@
 
 <script>
 import Layout from "@/components/Layout";
-import BlogList from "./components/BlogList";
+import BlogList from "./components/BlogList.vue";
 import BlogCategory from "./components/BlogCategory";
 export default {
   components: {
@@ -19,3 +19,5 @@ export default {
   },
 };
 </script>
+
+<style></style>

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Avatar from "@/components/Avatar.vue";
+import Avatar from "@/components/Avatar";
 import { formatDate } from "@/utils";
 export default {
   components: {

@@ -18,10 +18,13 @@ export default {
     async fetchSetting(ctx) {
       ctx.commit("setLoading", true);
       const resp = await getSetting();
-      resp.avatar = "http://localhost:7001" + resp.avatar;
-      resp.qqQrCode = "http://localhost:7001" + resp.qqQrCode;
-      resp.weixinQrCode = "http://localhost:7001" + resp.weixinQrCode;
-
+      // console.log(resp)
+      // resp.avatar = 'http://localhost:7001' + resp.avatar;
+      // resp.avatar = 'http://47.108.144.102:7001' + resp.avatar;
+      // resp.qqQrCode = 'http://localhost:7001' + resp.qqQrCode;
+      // resp.qqQrCode = 'http://47.108.144.102:7001' + resp.qqQrCode;
+      // resp.weixinQrCode = 'http://localhost:7001' + resp.weixinQrCode;
+      // resp.weixinQrCode = 'http://47.108.144.102:7001' + resp.weixinQrCode;
       ctx.commit("setData", resp);
       ctx.commit("setLoading", false);
       if (resp.favicon) {

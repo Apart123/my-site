@@ -3,7 +3,6 @@
     <div class="left">
       <slot name="left"></slot>
     </div>
-
     <div class="main">
       <slot></slot>
     </div>

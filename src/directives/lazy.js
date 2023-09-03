@@ -4,9 +4,8 @@ import defaultGif from "@/assets/default.gif";
 
 let imgs = [];
 
-
 function setImage(img) {
-  img.dom.src = defaultGif; // 先暂时使用默认图片
+  img.dom.src = defaultGif; // 先暂时使用着默认图片
   // 处理图片
   // 该图片是否在视口范围内
   const clientHeight = document.documentElement.clientHeight;
@@ -25,7 +24,7 @@ function setImage(img) {
   }
 }
 
-// 希望，调用该函数，可以设置合适的图片
+// 希望，调用该函数，就可以设置那些合适的图片
 function setImages() {
   for (const img of imgs) {
     // 处理该图片

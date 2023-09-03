@@ -68,6 +68,7 @@ export default {
     async handleSubmit(data, callback) {
       const resp = await msgApi.postMessage(data);
       callback("感谢您的留言");
+      console.log(resp,'ccvv')
       this.data.rows.unshift(resp);
     },
   },

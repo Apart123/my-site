@@ -1,6 +1,11 @@
 <template>
-  <div class="carousel-item-container" ref="container">
-    <div class="carousel-img"  ref="image">
+  <div
+    class="carousel-item-container"
+    ref="container"
+    @mousemove="handleMouseMove"
+    @mouseleave="handleMouseLeave"
+  >
+    <div class="carousel-img" ref="image" :style="imagePosition">
       <ImageLoader
         @load="this.showWords"
         :src="carousel.bigImg"
@@ -23,11 +28,39 @@ export default {
     return {
       titleWidth: 0,
       descWidth: 0,
+      containerSize: null, // 外层容器的尺寸
+      innerSize: null, // 里层图片的尺寸
+      mouseX: 0, // 鼠标的横坐标
+      mouseY: 0, // 鼠标的纵坐标
     };
+  },
+  computed: {
+    //得到图片坐标
+    imagePosition() {
+      if (!this.innerSize || !this.containerSize) {
+        return;
+      }
+      const extraWidth = this.innerSize.width - this.containerSize.width; // 多出的宽度
+      const extraHeight = this.innerSize.height - this.containerSize.height; //多出的高度
+      const left = (-extraWidth / this.containerSize.width) * this.mouseX;
+      const top = (-extraHeight / this.containerSize.height) * this.mouseY;
+      return {
+        transform: `translate(${left}px, ${top}px)`,
+      };
+    },
+    center() {
+      return {
+        x: this.containerSize.width / 2,
+        y: this.containerSize.height / 2,
+      };
+    },
   },
   mounted() {
     this.titleWidth = this.$refs.title.clientWidth;
     this.descWidth = this.$refs.desc.clientWidth;
+    this.setSize();
+    this.mouseX = this.center.x;
+    this.mouseY = this.center.y;
     window.addEventListener("resize", this.setSize);
   },
   destroyed() {
@@ -43,7 +76,7 @@ export default {
       this.$refs.title.style.transition = "1s";
       this.$refs.title.style.width = this.titleWidth + "px";
 
-      // 描述
+      // 描述也是一样
       this.$refs.desc.style.opacity = 1;
       this.$refs.desc.style.width = 0;
       // 强制让浏览器渲染一次
@@ -62,11 +95,20 @@ export default {
         height: this.$refs.image.clientHeight,
       };
     },
+    handleMouseMove(e) {
+      const rect = this.$refs.container.getBoundingClientRect();
+      this.mouseX = e.clientX - rect.left;
+      this.mouseY = e.clientY - rect.top;
+    },
+    handleMouseLeave() {
+      this.mouseX = this.center.x;
+      this.mouseY = this.center.y;
+    },
   },
 };
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 @import "~@/styles/var.less";
 .carousel-item-container {
   // background: @dark;
@@ -74,11 +116,17 @@ export default {
   height: 100%;
   color: #fff;
   position: relative;
+  overflow: hidden;
 }
 .carousel-img {
-  width: 100%;
-  height: 100%;
+  width: 110%;
+  height: 110%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: 0.3s;
 }
+
 .title,
 .desc {
   position: absolute;

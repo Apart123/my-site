@@ -7,7 +7,7 @@
         "
         :target="item.url ? '_blank' : '_self'"
       >
-        <img class="thumb" v-lazy="item.thumb" />
+        <img class="thumb" v-lazy="item.thumb" style="width:200px;margin-right:30px"/>
       </a>
       <div class="info">
         <h2>
@@ -48,7 +48,6 @@ export default {
   mixins: [mainScroll("projectContainer")],
   computed: mapState("project", ["loading", "data"]),
   created() {
-    // 触发
     this.$store.dispatch("project/fetchProject");
   },
 };
@@ -67,7 +66,7 @@ export default {
 }
 .project-item {
   transition: 0.5s;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   margin-bottom: 20px;
   &:hover {
@@ -76,15 +75,15 @@ export default {
     color: inherit;
   }
   .thumb {
-    width: 200px;
-    min-height: 120px;
+    width: 250px;
+    min-height: 150px;
     flex: 0 0 auto;
     object-fit: cover;
     border-radius: 5px;
     margin-right: 15px;
   }
   .info {
-    line-height: 1.3;
+    line-height: 1.7;
     flex: 1 1 auto;
     h2 {
       margin: 0;

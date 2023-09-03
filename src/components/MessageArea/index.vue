@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import DataForm from "./DataForm.vue";
-import DataList from "./DataList.vue";
+import DataForm from "./DataForm";
+import DataList from "./DataList";
 export default {
   props: {
     title: {

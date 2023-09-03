@@ -7,6 +7,13 @@ if (!window.VueRouter) {
   Vue.use(VueRouter); // 使用一个vue插件
 }
 
+const originalPush = VueRouter.prototype.push
+ 
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
+
 const router = new VueRouter({
   // 配置
   routes, // 路由匹配规则

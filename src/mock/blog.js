@@ -42,9 +42,6 @@ Mock.mock(/^\/api\/blog(\?.+)?$/, "get", function(options) {
   });
 });
 
-
-// 模拟博客详情页
-
 Mock.mock(/^\/api\/blog\/[^/]+$/, "get", {
   code: 0,
   msg: "",
@@ -301,7 +298,7 @@ Mock.mock(/^\/api\/comment\/?(\?.+)?$/, "get", function(options) {
     code: 0,
     msg: "",
     data: {
-      total: 42,
+      total: 52,
       [`rows|${query.limit || 10}`]: [
         {
           id: "@guid",

@@ -3,18 +3,18 @@ Mock.mock("/api/setting", "get", {
   code: 0,
   msg: "",
   data: {
-    avatar: "https://tvax3.sinaimg.cn/crop.0.0.512.512.180/001XZDurly8hf856sjiatj60e80e874x02.jpg?KID=imgbed,tva&Expires=1690101911&ssig=n0ZRhKPhls",
-    siteTitle: "勤奋的天才天天拼命",
-    github: "https://github.com/Apart123",
-    qq: "1798028945",
+    avatar: "http://www.duyiedu.com/source/img/logo.png",
+    siteTitle: "我的个人空间",
+    github: "https://github.com/DuYi-Edu",
+    qq: "3263023350",
     qqQrCode:
-      "https://wx2.sinaimg.cn/mw690/006FGbL7ly1hgyl5mbmzvj30do0dkgod.jpg",
-    weixin: "18280977332",
+      "http://www.duyiedu.com/source/img/%E5%B0%8F%E6%B8%A1%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png",
+    weixin: "yh777bao",
     weixinQrCode:
-      "https://wx3.sinaimg.cn/mw690/006FGbL7ly1hgyl5mcidrj30no0noqd7.jpg",
-    mail: "18280977332@163.com",
-    icp: "川ICP备20230606号",
-    githubName: "Apart123",
+      "http://www.duyiedu.com/source/img/%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.png",
+    mail: "duyi@gmail.com",
+    icp: "黑ICP备17001719号",
+    githubName: "DuYi-Edu",
     favicon: "http://mdrs.yuanjin.tech/Fs4CDlC6mwe_WXLMIiXcmSJLHO4f",
   },
 });

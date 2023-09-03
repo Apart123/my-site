@@ -7,7 +7,6 @@ import router from "./router";
 import showMessage from "./utils/showMessage";
 import "./eventBus";
 import store from "./store";
-// 一开始就触发
 store.dispatch("setting/fetchSetting");
 Vue.prototype.$showMessage = showMessage;
 
@@ -22,54 +21,3 @@ new Vue({
   store,
   render: (h) => h(App),
 }).$mount("#app");
-
-
-
-
-// Vue.config.productionTip = false
-
-// 测试 showMessage
-// import showMessage from "@/utils/showMessage";
-// window.showMessage = showMessage;
-// showMessage("提交成功", "info", 2000);
-
-// import "@/api/banner";
-
-
-
-// 测试：获取远程数据（博客）
-// import * as blogApi from "@/api/blog";
-
-// blogApi.getBlogTypes().then((r) => {
-//   console.log("博客分类", r);
-// });
-
-// blogApi.getBlogs(2, 10, 3).then((r) => {
-//   console.log("博客", r);
-// });
-
-
-// 测试事件总线
-// import eventBus from "./eventBus";
-
-// function handler1(data) {
-//   console.log("handler1", data);
-// }
-// function handler2(data) {
-//   console.log("handler2", data);
-// }
-// eventBus.$on("event1", handler1);
-// eventBus.$on("event1", handler2);
-// eventBus.$on("event2", handler1);
-
-// window.eventBus = eventBus;
-// window.handler1 = handler1;
-// window.handler2 = handler2;
-
-
-// 测试 setting api
-// import { getSetting } from "./api/setting";
-
-// getSetting().then((resp) => {
-//   console.log(resp);
-// });

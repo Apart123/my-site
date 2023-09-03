@@ -1,28 +1,58 @@
 <template>
-  <div class="pager-container">
-    <a @click="handleClick(1)" :class="{ disabled: current === 1 }">|&lt;&lt;</a>
-    <a @click="handleClick(current - 1)" :class="{ disabled: current === 1 }"
-      >&lt;&lt;</a
-    >
+  <!-- 只有总页数大于1时才显示 -->
+  <div class="pager-container" v-if="pageNumber > 1">
+    <a @click="handleClick(1)" :class="{ disabled: current === 1 }">
+      |&lt;&lt;
+    </a>
+    <a @click="handleClick(current - 1)" :class="{ disabled: current === 1 }">
+      &lt;&lt;
+    </a>
     <a
       @click="handleClick(n)"
       v-for="(n, i) in numbers"
       :key="i"
-      :class="{ active: current === n }"
-      >{{ n }}</a
+      :class="{ active: n === current }"
     >
+      {{ n }}
+    </a>
+
     <a
       @click="handleClick(current + 1)"
       :class="{ disabled: current === pageNumber }"
-      >&gt;&gt;</a
     >
+      &gt;&gt;
+    </a>
     <a
       @click="handleClick(pageNumber)"
       :class="{ disabled: current === pageNumber }"
-      >&gt;&gt;|</a
     >
+      &gt;&gt;|
+    </a>
   </div>
 </template>
+
+<style lang="less" scoped>
+@import "~@/styles/var.less";
+.pager-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  a {
+    color: @primary;
+    margin: 0 6px;
+    cursor: pointer;
+    &.disabled {
+      color: @lightWords;
+      cursor: not-allowed;
+    }
+    &.active {
+      color: @words;
+      font-weight: bold;
+      cursor: text;
+    }
+  }
+}
+</style>
 
 <script>
 export default {
@@ -45,18 +75,23 @@ export default {
     },
   },
   computed: {
-    // 总页码数
+    // 总页数
     pageNumber() {
       return Math.ceil(this.total / this.limit);
     },
+    // 得到显示的最小数字
     visibleMin() {
       let min = this.current - Math.floor(this.visibleNumber / 2);
-      if(min < 1) min = 1;
+      if (min < 1) {
+        min = 1;
+      }
       return min;
     },
     visibleMax() {
       let max = this.visibleMin + this.visibleNumber - 1;
-      if(max > this.pageNumber) max = this.pageNumber;
+      if (max > this.pageNumber) {
+        max = this.pageNumber;
+      }
       return max;
     },
     numbers() {
@@ -78,32 +113,9 @@ export default {
       if (newPage === this.current) {
         return;
       }
-      this.$emit("changePage", newPage);
+      // 抛出一个事件
+      this.$emit("pageChange", newPage);
     },
   },
 };
 </script>
-
-<style scoped lang="less">
-@import "~@/styles/var.less";
-.pager-container {
-  margin: 20px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  a {
-    margin: 0 5px;
-    cursor: pointer;
-    color: @primary;
-    &.disabled {
-      cursor: not-allowed;
-      color: @gray;
-    }
-    &.active {
-      color: @words;
-      font-weight: bold;
-      cursor: text;
-    }
-  }
-}
-</style>

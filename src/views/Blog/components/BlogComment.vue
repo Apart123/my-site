@@ -26,7 +26,6 @@ export default {
     };
   },
   created() {
-    // 监听主区域滚动条
     this.$bus.$on("mainScroll", this.handleScroll);
   },
   destroyed() {
@@ -38,17 +37,14 @@ export default {
     },
   },
   methods: {
-    // 处理滚动事件
-    // dom 需要知道dom元素滚动到哪个位置
     handleScroll(dom) {
       if (this.isLoading || !dom) {
         // 目前正在加载更多
         return;
       }
-      const range = 100; // 设置一个可接受的范围，在这个范围内都算达到了底部
+      const range = 100; // 顶一个可接受的范围，在这个范围内都算达到了底部
       const dec = Math.abs(dom.scrollTop + dom.clientHeight - dom.scrollHeight);
       if (dec <= range) {
-        // 到达底部
         this.fetchMore();
       }
     },
@@ -58,7 +54,7 @@ export default {
     // 加载下一页
     async fetchMore() {
       if (!this.hasMore) {
-        // 没有更多的数据
+        // 没有更多啦
         return;
       }
       this.isLoading = true;

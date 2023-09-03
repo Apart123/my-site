@@ -1,10 +1,10 @@
 <template>
   <div class="site-aside-container">
     <template v-if="data">
-      <Avatar :url="data.avatar" :size="150" />
-      <h3>{{ data.siteTitle }}</h3>
+      <Avatar :url="data.avatar" />
+      <h1 class="title">{{ data.siteTitle }}</h1>
     </template>
-    
+
     <Menu />
     <Contact v-if="data" />
     <p v-if="data" class="footer">
@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import Avatar from "@/components/Avatar.vue";
-import Menu from "@/components/Menu.vue";
-import Contact from "@/components/Contact.vue";
+import Avatar from "@/components/Avatar";
+import Menu from "./Menu";
+import Contact from "./Contact";
 import { mapState } from "vuex";
 export default {
   components: {
@@ -33,22 +33,22 @@ export default {
 .site-aside-container {
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  background: @dark;
   padding: 20px 0;
   box-sizing: border-box;
-  h3 {
-    text-align: center;
-    color: #fff;
-    margin-bottom: 10px;
-  }
-  .avatar-container {
-    margin: 0 auto;
-  }
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.avatar-container {
+  margin: 0 auto;
 }
 .footer {
   text-align: center;
   font-size: 12px;
-  color: @gray;
+}
+.title {
+  font-size: 1.2em;
+  color: #fff;
+  text-align: center;
 }
 </style>

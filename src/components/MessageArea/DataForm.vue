@@ -55,7 +55,6 @@ export default {
   },
   methods: {
     handleSubmit() {
-      // 提交验证
       this.error.nickname = this.formData.nickname ? "" : "请填写昵称";
       this.error.content = this.formData.content ? "" : "请填写内容";
       if (this.error.nickname || this.error.content) {
@@ -63,16 +62,13 @@ export default {
         return;
       }
       this.isSubmiting = true; // 正在提交，防止重复点击
-      // 提交触发事件
-      this.$emit("submit", this.formData, (successMsg) => { // 处理完成后
-        // 提示信息
+      this.$emit("submit", this.formData, (successMsg) => {
         this.$showMessage({
           content: successMsg,
           type: "success",
           duration: 1000,
           container: this.$refs.form,
           callback: () => {
-            // 提示完之后
             this.isSubmiting = false;
             this.formData.nickname = "";
             this.formData.content = "";
