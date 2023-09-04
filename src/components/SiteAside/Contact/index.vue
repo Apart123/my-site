@@ -60,7 +60,7 @@ export default {
 @import "~@/styles/var.less";
 .contact-container {
   list-style: none;
-  padding: 20px;
+  padding: 5px 20px;
   margin: 0;
   color: @gray;
   @itemHeight: 30px;

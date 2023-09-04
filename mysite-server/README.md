@@ -26,13 +26,13 @@ build environment:
 ## 克隆仓库
 
 ```shell
-git clone https://gitee.com/duyiedu/mysite-server
+git clone https://git@github.com:Apart123/my-site.git
 ```
 
 ## 安装依赖
 
 ```shell
-$ cd mysite-server
+$ cd my-site/mysite-server
 $ npm i
 ```
 
@@ -66,6 +66,8 @@ exports.admin = {
 
 ```shell
 npm start
+# 或者
+npm run dev
 ```
 
 启动完成后即可关闭终端

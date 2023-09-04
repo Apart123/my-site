@@ -44,7 +44,7 @@ export default {
   .self-fill(fixed);
 }
 .aside {
-  width: 250px;
+  width: 240px;
   height: 100%;
 }
 </style>

@@ -70,11 +70,11 @@ export default {
     &.selected {
       background: darken(@words, 3%);
     }
-    padding: 0 50px;
+    padding: 0 40px;
     display: block;
     display: flex;
     align-items: center;
-    height: 45px;
+    height: 40px;
     .icon {
       width: 24px;
     }
