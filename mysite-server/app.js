@@ -48,7 +48,7 @@ class AppBootHook {
         mail: '18280977332@163.com',
         icp: '川ICP备654321号',
         githubName: 'Apart123',
-        favicon: 'https://tvax3.sinaimg.cn/crop.0.0.512.512.180/001XZDurly8hf856sjiatj60e80e874x02.jpg?KID=imgbed,tva&Expires=1690101911&ssig=n0ZRhKPhls',
+        favicon: 'https://wx3.sinaimg.cn/orj360/006FGbL7ly1hhu2rd7gzmj308c08cglu.jpg',
       });
       console.log('全局设置初始化成功');
     }
