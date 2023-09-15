@@ -36,7 +36,7 @@ router.beforeEach(async(to, from, next) => {
       if(hasToken){
         // 有 token，我们还需要验证一下 token 的有效性
         try{
-          await store.dispatch('user/getInfo'); // 相当于大家之前学的 whoami
+          await store.dispatch('user/getInfo'); // 相当于之前学的 whoami
           next();
         } catch(error){
           await store.dispatch('user/resetToken');

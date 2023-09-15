@@ -89,7 +89,7 @@ const actions = {
             reject(res.msg);
           }
         } else {
-          // 说明这个 token 是 OK 的，将用户信息放入到仓库
+          // 说明 token 是 OK 的，将用户信息放入到仓库
           commit('SET_USER', res.data);
           resolve()
         }
